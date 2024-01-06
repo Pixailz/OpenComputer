@@ -1,0 +1,17 @@
+|  MFC-0002-RSA  |  19/11/2023  | By: Pixailz & Oxylev  |
+---------------------------------------------------------
+
+1. Definition
+
+   KEY_EXP    : 65537
+   KEY_LEN    : 16
+
+2. Goal
+
+  Authenticate users, with the help of the MFC-0001-DNS
+
+3. Situation
+
+   see MFC-0001-DNS (section 4. Security concern) before
+
+   Given those rules, DNS could be more securised, see MFC-0003-TLS (TODO)

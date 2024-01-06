@@ -1,0 +1,35 @@
+   MFC-0001-DNS  |  18/11/2023  | By: Pixailz & Oxylev  |
+---------------------------------------------------------
+
+1. Definition
+
+	ADDRESSE		: MAC Addresse of the host
+	PROTOCOL		: Port the user wan't to get
+	SAFE_DATABASE	: /usr/dns/DNS_RECORD
+	DNS_RECORD		: File storing ADDRESSE and PUB_KEY
+
+2. Goal
+
+	Securely retrieve an ADDRESSE about a PROTOCOL
+
+3. Cmd
+
+	GET <PROTOCOL>
+		Get DNS_RECORD by PROTOCOL
+
+	SET <PROTOCOL> <PUB_KEY>
+		Set registration, linking a DNS_RECORD to a PROTOCOL
+
+	REM <PROTOCOL>
+		Unregister DNS_RECORD
+
+4. Security Concern
+
+	Is previously established that:
+
+	1. an ADDRESSE is NOT spoofable
+	2. ADDRESSE of the DNS is known by the user (could update in the future)
+
+5. Cache
+
+	Save DNS_RECORD

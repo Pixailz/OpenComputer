@@ -1,0 +1,10 @@
+|  MFC-0003-TLS  |  19/11/2023  | By: Pixailz & Oxylev  |
+---------------------------------------------------------
+1. Situation
+	1. Alice and Bob wan't to talk to each other on a public network. to do so,
+	2. The first time that they meet each other, they first exchange a public key
+	3. Then store the public
+
+2.
+	1. listen on port
+	1. broadcast on port,

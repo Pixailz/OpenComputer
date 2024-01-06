@@ -1,0 +1,24 @@
+|  MFC-0000-DEF  |  19/11/2023  | By: Pixailz & Oxylev  |
+---------------------------------------------------------
+1. General
+
+	1. Network
+
+		ADDRESSE		: MAC Addresse of the host (first 8 char of the address
+						command)
+		PROTOCOL		: Port a client or a server is listening on
+
+	2. Crypto
+
+		PUB_KEY			: The public key anyone can have, to crypt message
+		PRIV_KEY		: The public key only should can have, to decrypt message
+
+1. MFC-0001-DNS
+
+		DNS_RECORD		: File storing ADDRESSE and PUB_KEY
+
+1. MFC-0002-RSA
+
+		KEY_LEN			: max len for key pair
+
+1. MFC-0003-TLS

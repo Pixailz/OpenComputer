@@ -1,0 +1,61 @@
+local  c = require("component")
+local  e = require("event")
+local  m = c.modem
+local  s = require("serialization")
+local  f = require("filesystem")
+
+--- config
+
+dnsPath = "/home/.dns"
+
+----------------
+
+functon DNS_Init()
+  if (f.exists(dnsPath) == false)then
+    f.makeDirectory(dnsPath)
+  end
+end
+
+function addClient(port, mac)
+  if (f.exists(dnsPath .. "/" .. port))then
+    print("Client " .. port .. " already registered.")
+    return nil
+  end
+  local fd = f.open(dnsPath .. port , r)
+  if (fd <= 0)then
+    print("Error: impossible to create folder.")
+    return nil
+  else
+    f.write(fd, mac)
+    print("Client " ... port .. mac .. " Added !")
+  end
+  local r = dnsPath .. "/" .. port
+  return r
+end
+----------------
+local  DNS_PORT = 4444
+
+DNS_Init()
+
+m.open(DNS_PORT)
+
+
+
+if m.isOpen(DNS_PORT) then
+  print("Listening on port "..DNS_PORT)
+end
+
+while true do
+  local  _, to, from, port, dist, msg = e.pull("modem_message")
+
+  print("MSG: from "..from.." to "..to.." dist "..dist.." msg "..msg)
+
+  print("DESERIALIZED")
+  local  pkt = s.unserialize(msg)
+  print(pkt.cmd)
+  print(pkt.arg)
+
+  if (pkt.cmd == "SET")then
+    addClient(pkt.arg, form)
+  end
+end
