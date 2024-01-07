@@ -17,7 +17,7 @@ local	DO_BIN = true
 local	DO_CONF = true
 local	DO_ETC = true
 local	DO_SERVICE = true
-local	DO_EXTRA = true
+local	DO_EXTRA = false
 
 local	DIR_BASE = "/usr"
 local	DIR_HOME ="/home"
@@ -93,7 +93,6 @@ function	update_lib()
 	wget_lib("vgpu.lua")
 
 	--- 0x01
-	wget_lib("periph-im.lua")
 	wget_lib("utils.lua")
 	wget_lib("rsa.lua")
 
@@ -117,8 +116,6 @@ function	update_bin()
 
 	print("Downloading bin")
 	wget_bin("lock.lua")
-
-	wget_bin("sc_train_station.lua")
 
 	wget_bin("test_print.lua")
 	wget_bin("test_rsa.lua")
