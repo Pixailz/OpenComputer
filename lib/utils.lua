@@ -10,6 +10,8 @@ local utils = {}
 
 	-- VANILLA
 local	fs = require("filesystem")
+local	computer = require("computer")
+local	component = require("component")
 
 	-- CUSTOM
 local	log = require("log")
@@ -19,7 +21,10 @@ local	log = require("log")
 
 function	utils.getId() return computer.address() end
 
-utils.id = require("component").modem.address:sub(1, 8)
+local	id = computer.address()
+if component.isAvailable("modem") then
+	utils.id = require("component").modem.address:sub(1, 8)
+end
 utils.tick = 1/20
 utils.id_rsa = "/etc/id_mc_rsa"
 

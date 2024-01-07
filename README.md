@@ -9,11 +9,6 @@
 
 ## HOW TO
 
-> [!TIP]
-> This is a template repo so i encourage you to change the **update.lua** file
-> to something else, like in the [sc-train-automate](https://github.com/ApelSoftCorp/sc-train-automat)
-> repo.
-
 ### Setup (Real PC)
 
 1. First git clone the repo on your real computer
@@ -21,9 +16,9 @@
 	git clone https://github.com/Pixailz/OpenComputer
 	```
 
-1. Then copy paste the `<prefix>_update.template.lua` file to a new `<prefix>_update.lua`
+1. Then copy paste the `update.template.lua` file to a new `update.lua`
 	```bash
-	cp <prefix>_update{.template,}.lua
+	cp update{.template,}.lua
 	```
 
 1. Now there's 2 options to fill up, the IP and the PORT the real PC will listen
@@ -36,10 +31,10 @@ folder and then
 ### Setup (OC PC)
 
 1. Now that the Web server is up and running, you can simply type this command to
-install the `<prefix>_update` script onto the OC PC
+install the `update` script onto the OC PC
 
 ```OC
-wget -f http://IP:PORT/<prefix>_update.lua /bin/<prefix>_update.lua
+wget -f http://IP:PORT/update.lua /bin/update.lua
 ```
 > [!NOTE]
 > replace the IP and PORT variable with the one you setup
@@ -49,7 +44,7 @@ be downloaded into the OC PC from the real one
 
 > here's the help of the script
 ```
-Usage: <prefix>_update [--help|-h] [--update|-u] [-r|--reboot] [PART..PARTN]
+Usage: update [--help|-h] [--update|-u] [-r|--reboot] [PART..PARTN]
 
     -h  --help      display this help message
     -u  --update    update this script

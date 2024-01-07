@@ -1,18 +1,30 @@
 local	computer = require("computer")
 local	term = require("term")
+local	shell = require("shell")
 local	component = require("component")
-local	data_card = component.data
 local	gpu = component.gpu
 
 local	e_handler = require("event_handler")
 e_handler.set_waiting("touch", "interrupted")
 local	log	= require("log")
+local	u = require("utils")
 
 log.lvl = 0
-log.file = "/usr/misc/lock.log"
+log.file = "/usr/lock/lock.log"
 
-local	id_path = "/usr/misc/user"
+local	id_path = "/usr/lock/auth.lst"
 local	id = nil
+
+local	users = {}
+
+if u.exists(id_path) & 0x1 > 0 then
+	for line in io.lines(id_path) do
+		users[#users + 1] = line
+	end
+else
+	users = nil
+end
+
 login_msg = "Login"
 info_msg = nil
 error_msg = nil
@@ -44,6 +56,13 @@ pErrorY = dy - 2
 
 -- local	function	print_login_button()
 -- end
+
+local	function	table_contain(value, table)
+	for i = 1, #table do
+		if table[i] == value then return true end
+	end
+	return false
+end
 
 local	function	print_date()
 	local	data = os.date("*t")
@@ -121,9 +140,17 @@ local	function	is_in_shutdown(x, y)
 	return y == pUtilsY and x <= pUtilsX + #reboot_msg + #shutdown_msg + #sep_msg - 1 and x >= pUtilsX + #reboot_msg + #sep_msg
 end
 
-local	fd = io.open(id_path, "r")
-local	user = fd:read()
-fd:close()
+local	function	check_login(user)
+	if users == nil then
+		id = user
+		return
+	end
+	if table_contain(user, users) then
+		id = user
+	else
+		error_msg = user.." unauthorized player..."
+	end
+end
 
 while not id do
 	print_ui()
@@ -135,11 +162,7 @@ while not id do
 		info_msg = "CTRL+C"
 	elseif event_id == "touch" then
 		if is_in_login(data.px, data.py) then
-			if data_card.md5(data.player) == user then
-				id = data.player
-			else
-				error_msg = data.player.." wrong player..."
-			end
+			check_login(data.player)
 		elseif is_in_reboot(data.px, data.py) then
 			computer.shutdown(true)
 		elseif is_in_shutdown(data.px, data.py) then
@@ -157,3 +180,5 @@ dofile("/etc/motd")
 
 log.print("Successfully logged as ")
 log.printc(id.."\n", log.c.orange)
+
+os.setenv("USER", id)

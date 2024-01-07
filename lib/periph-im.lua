@@ -1,9 +1,10 @@
 --- include
-local	periph = require("periph")
+local	p = require("periph")
 
----@meta
---- Base class for any component from ImmersiveRailroading
----@class periph_im
 local periph_im = {}
+
+function periph_im.reset_ac(periph)
+
+end
 
 return periph_im

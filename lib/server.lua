@@ -11,8 +11,11 @@ local server = {}
 	-- VANILLA
 local	event = require("event")
 local	component = require("component")
-local	modem = component.modem
-local	data = component.data
+local	modem = nil
+if component.isAvailable("modem") then modem = component.modem end
+
+local	data = nil
+if component.isAvailable("data") then data = component.data end
 
 local	serialization = require("serialization")
 
