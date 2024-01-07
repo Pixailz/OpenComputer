@@ -21,12 +21,12 @@
 	cp update{.template,}.lua
 	```
 
-1. Now there's 2 options to fill up, the IP and the PORT the real PC will listen
-on any HTTP request, on way to quickly open a webserver is by go in the repo
-folder and then
-	```bash
-	python3 -m http.server PORT
-	```
+1. There's 2 options to fill up, the IP and the PORT the real PC will listen
+on any HTTP request
+
+> [!NOTE]
+> One way to quickly open a webserver is by go in the repo folder and then
+> `python3 -m http.server PORT`
 
 ### Setup (OC PC)
 
@@ -39,10 +39,12 @@ wget -f http://IP:PORT/update.lua /bin/update.lua
 > [!NOTE]
 > replace the IP and PORT variable with the one you setup
 
-1. now every time you launch the update command, all your configured fill will
+> [!TIP]
+> Every time you launch the update command, all your configured fill will
 be downloaded into the OC PC from the real one
 
-> here's the help of the script
+### CLI Help
+
 ```
 Usage: update [--help|-h] [--update|-u] [-r|--reboot] [PART..PARTN]
 
@@ -50,7 +52,7 @@ Usage: update [--help|-h] [--update|-u] [-r|--reboot] [PART..PARTN]
     -u  --update    update this script
     -r  --reboot    reboot the computer at the end
 
-    PART            (lib bin etc)
+    PART            (lib bin conf etc service)
                     You can specify the part you wan't to update, for example
                     you can just update the lib part or the bin part or the 2.
                     If not provided all part is updated
