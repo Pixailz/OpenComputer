@@ -83,4 +83,49 @@ function	utils.touch(path)
 	end
 end
 
+utils.enum_table_lvl = 0
+utils.enum_table_pad = "   "
+
+local	function	get_pad()
+	return string.rep(utils.enum_table_pad, utils.enum_table_lvl)
+end
+
+local	function enum_table(t)
+	for k,v in pairs(t) do
+		if v == nil then
+			log.info(get_pad()..k..": nil")
+		elseif type(v) == "table" then
+			log.info(get_pad()..k..":")
+			utils.enum_table_lvl = utils.enum_table_lvl + 1
+			enum_table(v)
+		elseif type(v) == "boolean" then
+			if v then
+				log.pass(get_pad()..k..": true")
+			else
+				log.fail(get_pad()..k..": false")
+			end
+		else
+			log.info(get_pad()..k..": "..v)
+		end
+	end
+	utils.enum_table_lvl = utils.enum_table_lvl - 1
+end
+
+function	utils.enum_table(t)
+	utils.enum_table_lvl = 0
+	enum_table(t)
+end
+
+local function	get_hostname()
+	local	hostname = nil
+	if utils.exists("/etc/hostname") & 0x1 > 0 then
+		local	file = io.open("/etc/hostname")
+		hostname = file:read()
+		file:close()
+	end
+	return hostname
+end
+
+utils.hostname = get_hostname()
+
 return utils
