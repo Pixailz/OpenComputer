@@ -79,7 +79,7 @@ function	log.printc(str, foreground, background, mode)
 	gpu.setBackground(b_background)
 end
 
-local	function	wrapper_header(header, foreground, str, mode)
+function	wrapper_header(header, foreground, str, mode)
 	log.print("[")
 	log.printc(computer.uptime(), log.c.yellow)
 	log.print("]")
@@ -90,24 +90,24 @@ local	function	wrapper_header(header, foreground, str, mode)
 end
 
 function	log.fail(str, mode)
-	wrapper_header("FAIL", log.c.red, str, mode)
+	wrapper_header("❌", log.c.red, str, mode)
 end
 
 function	log.warn(str, mode)
-	wrapper_header("WARN", log.c.orange, str, mode)
+	wrapper_header("⚠", log.c.orange, str, mode)
 end
 
 function	log.pass(str, mode)
-	wrapper_header("PASS", log.c.green, str, mode)
+	wrapper_header("✔", log.c.green, str, mode)
 end
 
 function	log.info(str, mode)
-	wrapper_header("INFO", log.c.blue, str, mode)
+	wrapper_header("ℹ", log.c.blue, str, mode)
 end
 
 function	log.debug(str, mode)
 	if log.lvl > 0 then
-		wrapper_header("DEBG", log.c.purple, str, mode)
+		wrapper_header("🛠", log.c.purple, str, mode)
 	end
 end
 
