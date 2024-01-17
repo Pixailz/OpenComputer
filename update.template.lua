@@ -15,8 +15,8 @@ local	BASE_LINK = "http://"..IP..":"..PORT
 local	DO_LIB = true
 local	DO_BIN = true
 local	DO_CONF = true
-local	DO_ETC = true
-local	DO_SERVICE = true
+local	DO_ETC = false
+local	DO_SERVICE = false
 local	DO_EXTRA = false
 
 local	DIR_BASE = "/usr"
@@ -93,6 +93,7 @@ function	update_lib()
 	wget_lib("vgpu.lua")
 
 	--- 0x01
+	wget_lib("periph-im.lua")
 	wget_lib("utils.lua")
 	wget_lib("rsa.lua")
 
@@ -117,17 +118,24 @@ function	update_bin()
 	print("Downloading bin")
 	wget_bin("lock.lua")
 
+	wget_bin("station.lua")
+	wget_bin("station_display.lua")
+	wget_bin("pong.lua")
+
 	wget_bin("test_print.lua")
 	wget_bin("test_rsa.lua")
 	wget_bin("test_rsa.priv")
 	wget_bin("test_rsa.pub")
+	wget_bin("test_node.lua")
 	wget_bin("test_server.lua")
+	wget_bin("test_client.lua")
 	wget_bin("test_chat.lua")
 	wget_bin("test_vgpu.lua")
 	wget_bin("test_bigint.lua")
 	wget_bin("test_tls.a.lua")
 	wget_bin("test_tls.b.lua")
 	wget_bin("test_zirnox.lua")
+	wget_bin("test_pong.lua")
 end
 
 --- CONF
@@ -159,7 +167,7 @@ function	update_etc()
 
 	print("Downloading etc")
 
-	wget_etc("T01.lua")
+	-- wget_etc("template_station.lua")
 end
 
 --- SERVICE

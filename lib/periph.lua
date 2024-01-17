@@ -42,7 +42,7 @@ function	periph.wrapper(periph_type, periph_subtype, name, addr)
 	local	fmt = "%s: %s: %s"
 
 	if a == nil then
-		log.periph_fail(periph_type, periph_subtype, name, addr, "KO: get")
+		log.periph_fail(periph_type, periph_subtype, name, addr, "get")
 		return nil
 	end
 

@@ -32,9 +32,21 @@ e_handler.waiting_for = {}
 -- e_handler.modem_message = server.recv
 
 function e_handler.key_up(adress, char, code, player)
-	local	c = string.char(char)
+	local	data = {
+		["key"] = string.char(char),
+		["player"] = player,
+	}
 
-	return c
+	return data
+end
+
+function e_handler.key_down(adress, char, code, player)
+	local	data = {
+		["key"] = string.char(char),
+		["player"] = player,
+	}
+
+	return data
 end
 
 function	e_handler.touch(...)
