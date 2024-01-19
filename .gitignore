@@ -1,2 +1,5 @@
 # Secret file
 update.lua
+
+# log file
+**/*.log

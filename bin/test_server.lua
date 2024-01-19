@@ -1,8 +1,10 @@
 local	c = require("component")
+local	g = c.gpu
 local	e = require("event")
 local	s = require("serialization")
 local	thread = require("thread")
 local	m = c.modem
+local	computer = require("computer")
 
 local	PORT = 123
 
@@ -16,7 +18,6 @@ state = {
 running = true
 
 function	listen(listen_port)
-	print("listening on port "..PORT)
 	while running do
 		local	event_type,
 				addr_dst,
@@ -37,24 +38,26 @@ function	listen(listen_port)
 end
 
 function	print_status()
-	local	i = 0
-	print("printing status")
+	g.set(1, 1, "UPTIME")
+	g.set(1, 2, "RED")
+	g.set(1, 3, "BLUE")
 	while running do
-		print("STATUS "..i)
-		print("RED    "..state["red"])
-		print("BLUE   "..state["blue"])
+		g.set(15, 1, ""..computer.uptime())
+		g.set(15, 2, ""..state["red"])
+		g.set(15, 3, ""..state["blue"])
 		if state["red"] > 0 then state["red"] = state["red"] - 1 end
 		if state["blue"] > 0 then state["blue"] = state["blue"] - 1 end
 		os.sleep(1)
-		i = i + 1
 	end
 end
+
+local	w, h = g.getResolution()
+
+g.fill(1, 1, w, h, " ") -- clears the screen
 
 local	thread_table = {
 	thread.create(print_status),
 	thread.create(listen, PORT),
 }
 
-print("begin")
 thread.waitForAll(thread_table)
-print("end")
