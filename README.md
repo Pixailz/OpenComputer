@@ -1,8 +1,16 @@
 # OpenComputer Lib
 
-## HOW TO
+## How To
 
-see this [repo](https://github.com/Pixailz/OpenComputer) for more help
+### Setup update.template.lua
+
+> this section need to be preserved and all other deleted when a repo is mirrored
+
+This repo is a template from this [repo](https://github.com/Pixailz/OpenComputer),
+and it's include an update.template.lua that need to be configured to easily
+transfert file beetween host PC and OC PC
+
+Please refer to it for more informations
 
 ### Setup (Real PC)
 
