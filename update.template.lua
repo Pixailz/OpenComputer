@@ -183,6 +183,7 @@ function	update_service()
 
 	wget(DIR_SER_SERVICE.."/rc.cfg", "/etc/rc.cfg")
 	wget_service("redgate.lua")
+	wget_service("security.lua")
 end
 
 --- EXTRA
