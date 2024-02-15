@@ -197,9 +197,6 @@ local	function	start_thread()
 	if status == "dead" then
 		args.THREAD_PAD = thread.create(watch_pad)
 	end
-	if status == "suspended" then
-		args.THREAD_PAD:resume()
-	end
 	status_thread()
 
 	if args.THREAD_RED == nil then
@@ -209,9 +206,6 @@ local	function	start_thread()
 	log("RED "..status)
 	if status == "dead" then
 		args.THREAD_RED = thread.create(watch_red)
-	end
-	if status == "suspended" then
-		args.THREAD_RED:resume()
 	end
 end
 
@@ -229,6 +223,7 @@ function	start()
 	end
 	start_thread()
 	status()
+	return 1
 end
 
 function	stop()
